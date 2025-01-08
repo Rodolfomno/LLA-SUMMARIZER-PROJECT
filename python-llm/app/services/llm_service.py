@@ -3,7 +3,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
 
-
 class LLMService:
     def __init__(self):
         # Aqui assumimos que há uma variável de ambiente HF_TOKEN configurada.
