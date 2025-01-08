@@ -6,7 +6,7 @@ O resumo gerado é salvo com o texto original e a versao resumida e traduzido co
 ## Estrutura do Projeto
 
 - **node-api/**: Contém a implementação da API Node.js.
- - [x] - **data/data.json**: contém as informações das tasks.
+ -:heavy_check_mark: - **data/data.json**: contém as informações das tasks.
   - **src/**: Contém o código-fonte da API.
     - **app.ts**: Ponto de entrada da aplicação.
     - **index.ts**: Inicia o servidor.
