@@ -50,12 +50,9 @@ router.post("/", async (req: Request, res: Response) => {
 });
 
 // GET: Lista todas as tarefas
-// router.get("/tasks", (req, res) => {
-//   const tasks = tasksRepository.getAllTasks();
-//   return res.json(tasks);
-// });
-
 router.get("/", (req, res) => {
-  return res.json({ message: 'API is running' });
+  const tasks = tasksRepository.getAllTasks();
+  return res.json(tasks);
 });
+
 export default router;
