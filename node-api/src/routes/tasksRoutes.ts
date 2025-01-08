@@ -3,13 +3,21 @@ import { TasksRepository } from "../repositories/tasksRepository";
 
 const router = Router();
 const tasksRepository = new TasksRepository();
+const availableLanguages = ['pt', 'en', 'es' ]
 
 // POST: Cria uma tarefa e solicita resumo ao serviço Python
 router.post("/", async (req: Request, res: Response) => {
   try {
-    const { text } = req.body;
+    const { text, lang } = req.body;
     if (!text) {
-      return res.status(400).json({ error: 'Campo "text" é obrigatório.' });
+      return res.status(400).json({ error: 'Campo text é obrigatório.' });
+    }
+    if (!lang) {
+      return res.status(400).json({ error: 'Campo lang" é obrigatório.' });
+    }
+
+    if(!availableLanguages.includes(lang.toLowerCase())){
+      return res.status(400).json({ error: 'Linguagem indisponível no momento' });
     }
 
     // Cria a "tarefa"
