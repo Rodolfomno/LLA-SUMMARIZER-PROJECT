@@ -18,7 +18,7 @@ router.post("/", async (req: Request, res: Response) => {
     }
 
     if(!availableLanguages.includes(lang.toLowerCase())){
-      return res.status(400).json({ error: 'Linguagem indisponível no momento' });
+      return res.status(400).json({ error: 'Language not supported.' });
     }
 
     // Cria a "tarefa"
@@ -55,4 +55,19 @@ router.get("/", (req, res) => {
   return res.json(tasks);
 });
 
+router.delete('/:id', (req: Request, res: Response) => {
+  const taskId = parseInt(req.params.id)
+
+  if (isNaN(taskId)) {
+    return res.status(400).json({ message: 'Invalid task ID' });
+  }
+
+  const isDeleted = tasksRepository.deleteById(taskId);
+
+  if (isDeleted) {
+    return res.status(200).json({ message: `Task ${taskId} has been deleted` });
+  } else {
+    return res.status(404).json({ message: `Task ${taskId} not found` });
+  }
+});
 export default router;

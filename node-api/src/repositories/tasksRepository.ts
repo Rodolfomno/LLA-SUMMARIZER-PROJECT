@@ -34,4 +34,14 @@ export class TasksRepository {
   getAllTasks(): Task[] {
     return this.tasks;
   }
+
+  deleteById(id: number): boolean {
+    if (!this.tasks.find(t => t.id === id)) {
+      return false
+    }
+    this.tasks = this.tasks.filter((task) => task.id !== id)
+
+    return true
+  }
+  
 }
