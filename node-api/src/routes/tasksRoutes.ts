@@ -22,7 +22,7 @@ router.post("/", async (req: Request, res: Response) => {
     }
 
     // Cria a "tarefa"
-    const task = tasksRepository.createTask(text);
+    const task = tasksRepository.createTask({ text, lang });
 
     // Deve solicitar o resumo do texto ao serviço Python
     const { summary } = await fetch(url, {
@@ -66,6 +66,22 @@ router.delete('/:id', (req: Request, res: Response) => {
 
   if (isDeleted) {
     return res.status(200).json({ message: `Task ${taskId} has been deleted` });
+  } else {
+    return res.status(404).json({ message: `Task ${taskId} not found` });
+  }
+});
+
+router.get('/:id', (req: Request, res: Response) => {
+  const taskId = parseInt(req.params.id)
+
+  if (isNaN(taskId)) {
+    return res.status(400).json({ message: 'Invalid task ID' });
+  }
+
+  const task = tasksRepository.getTaskById(taskId);
+
+  if (task) {
+    return res.status(200).json(task);
   } else {
     return res.status(404).json({ message: `Task ${taskId} not found` });
   }
