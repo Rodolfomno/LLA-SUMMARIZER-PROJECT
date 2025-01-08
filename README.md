@@ -49,39 +49,39 @@ O resumo gerado é salvo com o texto original e a versao resumida e traduzido co
 
 ### No projeto Node.js
 
-- No POST **/tasks**, a API deve receber um texto e um idioma e enviar para o serviço Python para gerar o resumo no idioma solicitado.
+- [x] - No POST **/tasks**, a API deve receber um texto e um idioma e enviar para o serviço Python para gerar o resumo no idioma solicitado.
 
-  #### Parâmetros que devem ser recebidos pela API:
+  - [x] #### Parâmetros que devem ser recebidos pela API:
 
   - `text`: Texto a ser resumido.
   - `lang`: Idioma para qual o texto original deve ser traduzido.
 
-  #### Idiomas suportados:
+  - [x] #### Idiomas suportados:
 
   - `pt`: Português.
   - `en`: Inglês.
   - `es`: Espanhol.
-  - Caso o idioma não seja suportado, retornar um erro com status 400 e a mensagem "Language not supported".
+  - [x] - Caso o idioma não seja suportado, retornar um erro com status 400 e a mensagem "Language not supported".
 
-- Deve ser possível acessar o resumo de uma tarefa através do endpoint GET **/tasks/:id**.
+- [x] - Deve ser possível acessar o resumo de uma tarefa através do endpoint GET **/tasks/:id**.
 
-  ### Deve retornar um JSON com as propriedades:
+  - [x] ### Deve retornar um JSON com as propriedades:
 
   - `id`: Identificador da tarefa.
   - `text`: Texto original.
   - `summary`: Resumo gerado pelo serviço Python.
   - `lang`: Idioma para qual o texto foi traduzido(solicitado pelo usuário).
 
-- Deve ser possível remover uma tarefa através do endpoint DELETE **/tasks/:id**.
-- Persistir as informações das tarefas em um arquivo JSON.
+- [x] - Deve ser possível remover uma tarefa através do endpoint DELETE **/tasks/:id**.
+- [x] - Persistir as informações das tarefas em um arquivo JSON.
 
 ### No projeto Python
 
-- Implementar a lógica de resumo de texto utilizando LangChain(Prompt) no idioma solicitado.
+- [x] - Implementar a lógica de resumo de texto utilizando LangChain(Prompt) no idioma solicitado.
   ### O resumo deve ser retornado em formato JSON, com a propriedades:
   - `summary`: Resumo gerado.
 
 ## Em ambos os projetos
 
-- Deve possuir uma rota inicial(/) que retorne um JSON com a propriedade `message` contendo a mensagem "API is running".
+- [x] - Deve possuir uma rota inicial(/) que retorne um JSON com a propriedade `message` contendo a mensagem "API is running".
 
