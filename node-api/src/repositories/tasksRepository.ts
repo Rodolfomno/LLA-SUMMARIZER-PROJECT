@@ -1,3 +1,5 @@
+import { updateJson } from '../helpers/helper'
+
 interface Task {
   id: number;
   text: string;
@@ -24,6 +26,7 @@ export class TasksRepository {
     const taskIndex = this.tasks.findIndex(t => t.id === id);
     if (taskIndex > -1) {
       this.tasks[taskIndex].summary = summary;
+      updateJson(this.tasks)
       return this.tasks[taskIndex];
     }
     return null;
@@ -42,6 +45,8 @@ export class TasksRepository {
       return false
     }
     this.tasks = this.tasks.filter((task) => task.id !== id)
+
+    updateJson(this.tasks)
 
     return true
   }
