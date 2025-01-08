@@ -14,7 +14,7 @@ llm_service = LLMService()
 
 class dataJson(BaseModel):
     text: str
-    language: str
+    lang: str
 
 @app.get("/")
 def defaultMessage():
@@ -22,5 +22,5 @@ def defaultMessage():
 
 @app.post("/summarize")
 async def summarize(data: dataJson):
-    summary = llm_service.summarize_text(data.text, data.language)
+    summary = llm_service.summarize_text(data.text, data.lang)
     return {"summary": summary}

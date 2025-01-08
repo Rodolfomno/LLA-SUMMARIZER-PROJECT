@@ -13,16 +13,16 @@ class LLMService:
             base_url="https://api-inference.huggingface.co/models/Qwen/Qwen2.5-72B-Instruct/v1",
         )
 
-    def summarize_text(self, text: str, language: str = "português") -> str:
+    def summarize_text(self, text: str, lang: str = "português") -> str:
         prompt_template = PromptTemplate(
             input_variables=["text", "language"],
             template=(
-                "Resuma o seguinte texto no idioma {language}: \n\n"
+                "Resuma o seguinte texto no idioma {lang}: \n\n"
                 "{text}"
             )
         )
 
-        prompt = prompt_template.format(text=text, language=language)
+        prompt = prompt_template.format(text=text, lang=lang)
 
         response = self.llm.predict(prompt)
         return response
