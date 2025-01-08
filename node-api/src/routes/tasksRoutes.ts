@@ -11,10 +11,10 @@ router.post("/", async (req: Request, res: Response) => {
   try {
     const { text, lang } = req.body;
     if (!text) {
-      return res.status(400).json({ error: 'Campo text é obrigatório.' });
+      return res.status(400).json({ error: 'text field is mandatory.' });
     }
     if (!lang) {
-      return res.status(400).json({ error: 'Campo lang" é obrigatório.' });
+      return res.status(400).json({ error: 'lang field is mandatory.' });
     }
 
     if(!availableLanguages.includes(lang.toLowerCase())){
@@ -38,14 +38,14 @@ router.post("/", async (req: Request, res: Response) => {
     tasksRepository.updateTask(task.id, summary);
 
     return res.status(201).json({
-      message: "Tarefa criada com sucesso!",
+      message: "Task suscessfully created",
       task: tasksRepository.getTaskById(task.id),
     });
   } catch (error) {
-    console.error("Erro ao criar tarefa:", error);
+    console.error("Error creating task:", error);
     return res
       .status(500)
-      .json({ error: "Ocorreu um erro ao criar a tarefa." });
+      .json({ error: "An error has occurred." });
   }
 });
 
