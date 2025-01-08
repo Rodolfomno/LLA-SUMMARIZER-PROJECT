@@ -1,5 +1,7 @@
 import os
 from langchain.chat_models import ChatOpenAI
+from langchain.prompts import PromptTemplate
+
 
 
 class LLMService:
@@ -12,8 +14,16 @@ class LLMService:
             base_url="https://api-inference.huggingface.co/models/Qwen/Qwen2.5-72B-Instruct/v1",
         )
 
-    def summarize_text(self, text: str) -> str:
-        prompt = f"{text}"
+    def summarize_text(self, text: str, language: str = "português") -> str:
+        prompt_template = PromptTemplate(
+            input_variables=["text", "language"],
+            template=(
+                "Resuma o seguinte texto no idioma {language}: \n\n"
+                "{text}"
+            )
+        )
 
-        response = self.llm.invoke(prompt)
+        prompt = prompt_template.format(text=text, language=language)
+
+        response = self.llm.predict(prompt)
         return response

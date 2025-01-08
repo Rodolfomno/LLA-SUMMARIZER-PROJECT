@@ -12,16 +12,15 @@ app = FastAPI()
 llm_service = LLMService()
 
 
-class TextData(BaseModel):
+class dataJson(BaseModel):
     text: str
+    language: str
 
 @app.get("/")
 def defaultMessage():
     return { "message": "API is running" }
 
 @app.post("/summarize")
-async def summarize(data: TextData):
-    print(data)
-    text = data.text
-    llm_service.summarize_text(text)
-    return "OK"
+async def summarize(data: dataJson):
+    summary = llm_service.summarize_text(data.text, data.language)
+    return {"summary": summary}
